@@ -3,8 +3,11 @@ import NewsItem from './NewsItem'
 import Spineer from './Spineer';
 export default class News extends Component {
     // articles = '';
-    constructor() {
-        super();
+     titleCase = (string)=>{
+        return string[0].toUpperCase() + string.slice(1).toLowerCase();
+      }
+    constructor(props) {
+        super(props);
         this.state = {
             articles: [],
             page: 1,
@@ -13,6 +16,7 @@ export default class News extends Component {
             // articles: [...this.articles]
 
         }
+        document.title = `${this.titleCase(this.props.category)} - News Blogs`;
     }
 
     async updateNews() {
@@ -69,7 +73,7 @@ export default class News extends Component {
     render() {
         return (
             <div className='container my-3'>
-                <h1>NewsMonkey Top Headlines </h1>
+                <h1> Top {this.titleCase(this.props.category)} Headline From Category </h1>
                 {this.state.loading && <Spineer />}
                 <div className='row'>
                     {!this.state.loading && this.state.articles && this.state.articles.map((element) => {
