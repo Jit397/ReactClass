@@ -15,7 +15,7 @@ export default class News extends Component {
         }
     }
     async componentDidMount() {
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=e736a34ae3a24ca182e1352c30d0a4e7&page=1&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=e736a34ae3a24ca182e1352c30d0a4e7&page=1&pageSize=${this.props.pageSize}`;
         this.setState({loading:true});
 
         let dataram = await fetch(url);
@@ -39,7 +39,7 @@ export default class News extends Component {
         }
     }
     handlePreClick = async () => {
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=e736a34ae3a24ca182e1352c30d0a4e7&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=e736a34ae3a24ca182e1352c30d0a4e7&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
         this.setState({loading:true});
         let dataram = await fetch(url);
         let parseData = await dataram.json();
@@ -58,7 +58,7 @@ export default class News extends Component {
                 <div className='row'>
                     {!this.state.loading && this.state.articles && this.state.articles.map((element) => {
                         return <div className='col-md-4 mb-2' key={element.url}>
-                            <NewsItem title={element.title ? element.title.slice(0, 30) : ''} description={element.description ? element.description.slice(0, 80) : ''} newsUrl={element.url} imageurl={element.urlToImage} />
+                            <NewsItem title={element.title ? element.title.slice(0, 30) : ''} description={element.description ? element.description.slice(0, 80) : ''} newsUrl={element.url} imageurl={element.urlToImage} author={element.author ? element.author:'Jitu'} source={element.source.name} publishDate={element.publishedAt}/>
                         </div>
                     })}
                 </div>
