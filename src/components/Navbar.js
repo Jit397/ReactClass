@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Routes,Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 export class Navbar extends Component {
 
     render() {
