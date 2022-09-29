@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import News  from './components/News';
 import React, { Component } from 'react'
+import LoadingBar from 'react-top-loading-bar'
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,6 +15,10 @@ function App() {
      
       <Router>
         <Navbar />
+        <LoadingBar
+        color='#f11946'
+        progress={10}
+      />
         <Routes>
           <Route exact path="/" element={<News key="sports" pageSize={6} country="in" category="sports" />} /> 
           <Route exact path="/business" element={<News key="business" pageSize={6} country="in" category="business" />} />
